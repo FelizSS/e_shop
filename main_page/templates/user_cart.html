@@ -35,7 +35,7 @@
                 <h4>{{ i.quantity }}</h4>
               </td>
               <td class="cart_total">
-                <h4>{{ total }} сум</h4>
+                <h4>{{ i.total_for_product }} сум</h4>
               </td>
               <td class="cart_delete">
                 <form action="/del_item/{{ i.product.id }}" method="post">
