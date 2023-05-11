@@ -71,7 +71,7 @@ def get_user_cart(request):
     total = [i.total_for_product for i in user_cart]
     context = {'cart': user_cart, 'total': total}
 
-    return render(request, 'user_cart.html', {'cart': user_cart}, context)
+    return render(request, 'user_cart.html', context)
 
 # oformlenie zakazov
 
