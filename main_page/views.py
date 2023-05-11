@@ -17,25 +17,15 @@ def index(request):
     all_products = models.Product.objects.all()
     search_bar = SearchForm ()
 
-
-    # # poluchim znachenie vvedennoe v poisk
-    # from_frontend = request.GET.get('exact_product')
-    # print(from_frontend)
-    #
-    # # bilo li vvedeno chto to v poiske
-    #
-    # if from_frontend is not None:
-    #     all_products = models.Product.objects.filter(product_name=from_frontend)
-
     context = {'all_categories': all_categories,
                'products': all_products,
                'form': search_bar}
 
-    if request.method =='POST':
+    if request.method == 'POST':
         product_find = request.POST.get('search_product')
         try:
             search_result = models.Product.objects.get(product_name=product_find)
-            return redirect(f'/{search_result.id}')
+            return redirect(f'/item/{search_result.id}')
         except:
             return redirect('/')
 
@@ -56,7 +46,7 @@ def get_exact_product(request,pk):
                                        total_for_product = product.product_price*int(request.POST.get('quantity')))
         return redirect('/cart')
 
-    return render(request, 'exact_product.html', context)
+    return render(request, 'about_product.html', context)
 
 
 def current_category(request, pk):
@@ -68,16 +58,20 @@ def current_category(request, pk):
 def get_exact_category(request, pk):
     # poluchaem categorii
     exact_category = models.Category.objects.get(id=pk)
-
+    categories = models.Category.objects.all()
     # vivodim product iz etoy categorii
     category_products = models.Product.objects.filter(product_category=exact_category)
 
-    return render(request, 'exact_category.html', {'category_products': category_products})
+    return render(request, 'categrory_products.html', {'category_products': category_products,
+                                                      'categories': categories})
 
 def get_user_cart(request):
 
     user_cart = models.UserCart.objects.filter(user_id=request.user.id)
-    return render(request, 'user_cart.html', {'cart': user_cart})
+    total = [i.total_for_product for i in user_cart]
+    context = {'cart': user_cart, 'total': total}
+
+    return render(request, 'user_cart.html', {'cart': user_cart}, context)
 
 # oformlenie zakazov
 

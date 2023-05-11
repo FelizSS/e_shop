@@ -36,7 +36,7 @@
 								<div class="search_box pull-right">
 									<form method="POST">
 										  {% csrf_token %}
-										  <input type="text" placeholder="Search" name="search_product" />
+										  <input type="text" placeholder="Search" name="search_bar" />
 									</form>
 								</div>
 							</div>
@@ -101,10 +101,10 @@
 					<div class="left-sidebar">
 						<h2>Category</h2>
 						<div class="panel-group category-products" id="accordian"><!--category-products-->
-							{% for category in all_categories %}
+							{% for category in categories %}
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h4 class="panel-title"><a href="/category/{{ category.id }}">{{ category.category_name }}</a></h4>
+									<h4 class="panel-title"><a href="category/{{ category.id }}">{{ category.category_name }}</a></h4>
 								</div>
 							</div>
 							{% endfor %}
@@ -120,10 +120,10 @@
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<div class="productinfo text-center">
-											<a href="/item/{{ i.id }}"><img src="{{ i.product_photo }}"></a>
+											<a href="/product/{{ i.product_name }}"><img src="{{ i.product_image }}"></a>
 											<h2>{{ i.product_price }} сум</h2>
 											<p>{{ i.product_name }}</p>
-											<a href="/item/{{ i.id }}" class="btn btn-default add-to-cart">Learn more</a>
+											<a href="/product/{{ i.product_name }}" class="btn btn-default add-to-cart">Learn more</a>
 										</div>
 									</div>
 								</div>

@@ -48,7 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware' #tolko dlya servera (tolko kogda zagrujaem na server)
+     'whitenoise.middleware.WhiteNoiseMiddleware' #tolko dlya servera (tolko kogda zagrujaem na server)
 ]
 
 ROOT_URLCONF = 'online_shop.urls'
