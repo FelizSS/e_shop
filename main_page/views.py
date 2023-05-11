@@ -68,7 +68,7 @@ def get_exact_category(request, pk):
 def get_user_cart(request):
 
     user_cart = models.UserCart.objects.filter(user_id=request.user.id)
-    total = [i.total_for_product for i in user_cart]
+    total = sum[i.total_for_product for i in user_cart]
     context = {'cart': user_cart, 'total': total}
 
     return render(request, 'user_cart.html', context)
